@@ -15,6 +15,8 @@ export const loader = async ({ request }) => {
 
 export default function App() {
   const { apiKey } = useLoaderData();
+  console.log("App Loader Data - API Key:", apiKey);
+  if (!apiKey) console.error("API Key is missing! Check Vercel Environment Variables.");
 
   return (
     <AppProvider embedded apiKey={apiKey}>
