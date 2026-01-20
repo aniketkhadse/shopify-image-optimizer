@@ -2,7 +2,7 @@
 
 client_id = "2740298cfaaf366eadb0bd7d80a1b69d"
 name = "Arista-image-optimizer"
-application_url = "https://example.com"
+application_url = "https://shopify-image-optimizer.vercel.app"
 embedded = true
 
 [build]
@@ -11,9 +11,21 @@ automatically_update_urls_on_dev = true
 [webhooks]
 api_version = "2026-04"
 
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "write_products"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://shopify-image-optimizer.vercel.app/auth/callback",
+  "https://shopify-image-optimizer.vercel.app/auth/shopify/callback",
+  "https://shopify-image-optimizer.vercel.app/api/auth/callback"
+]
